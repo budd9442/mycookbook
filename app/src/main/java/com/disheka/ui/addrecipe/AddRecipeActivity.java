@@ -42,6 +42,10 @@ public class AddRecipeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Add Recipe");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true); // Enable back button
+        }
 
         // Initialize Firestore
         db = FirebaseFirestore.getInstance();

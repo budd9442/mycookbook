@@ -3,8 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/rounded_corners"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:layout_marginTop="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,41 +19,54 @@
         <!-- Edit Icon -->
         <!-- Add space between icons and recipe image -->
 
-        <ImageView
-            android:id="@+id/recipeImage"
-            android:layout_width="78dp"
-            android:layout_height="78dp"
-            android:layout_marginBottom="8dp"
-            android:contentDescription="@string/recipe_image_desc"
-            android:scaleType="centerCrop" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"> <!-- Optional: Add elevation for shadow effect -->
+
+            <ImageView
+                android:id="@+id/recipeImage"
+                android:layout_width="78dp"
+                android:layout_height="78dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@string/recipe_image_desc"
+                android:scaleType="centerCrop" />
+
+        </androidx.cardview.widget.CardView>
+
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
-        android:orientation="vertical">
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/recipeTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/recipeTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/recipeDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textSize="14sp" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/recipeDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textSize="14sp" />
+        </LinearLayout>
+
         <ImageView
             android:id="@+id/editIcon"
             android:layout_width="40dp"
             android:layout_height="41dp"
             android:layout_marginEnd="8dp"
             android:contentDescription="edit_recipe"
-            android:src="@drawable/ic_edit" />
+            android:src="@drawable/ic_edit"
+            app:tint="@color/teal_700" />
 
         <ImageView
             android:id="@+id/deleteIcon"
@@ -59,6 +74,7 @@
             android:layout_height="40dp"
             android:layout_marginEnd="8dp"
             android:contentDescription="delete_recipe"
-            android:src="@drawable/ic_delete" />
+            android:src="@drawable/ic_delete"
+            app:tint="@color/teal_700" />
     </LinearLayout>
-    </LinearLayout>
+</LinearLayout>

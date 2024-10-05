@@ -32,7 +32,7 @@ public class NavigationActivity extends AppCompatActivity {
                 selectedFragment = new SearchFragment();
             } else if (item.getItemId() == R.id.nav_community) {
                 selectedFragment = new CommunityFragment();
-            } else if (item.getItemId() == R.id.nav_notifications) {
+            } else if (item.getItemId() == R.id.nav_my_recipes) {
                 selectedFragment = new MyRecipesFragment();
             } else if (item.getItemId() == R.id.nav_account) {
                 selectedFragment = new AccountFragment();

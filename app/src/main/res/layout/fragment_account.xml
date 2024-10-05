@@ -1,17 +1,97 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Banner Image -->
+    <ImageView
+        android:id="@+id/bannerImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/banner_placeholder" />
+
+    <!-- Profile Picture -->
+    <ImageView
+        android:id="@+id/profilePicture"
+        android:layout_width="166dp"
+        android:layout_height="157dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="-50dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/circle_background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/profile_placeholder" />
+
     <TextView
+        android:id="@+id/questionCookingSkill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="User Account"
-        android:textSize="24sp"
-        android:textStyle="bold"/>
+        android:text="Cooking Skill Level"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:paddingBottom="8dp" />
 
-    <!-- Add more UI elements as needed -->
+    <Spinner
+        android:id="@+id/spinnerCookingSkill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D3D3D3" />
 
+    <TextView
+        android:id="@+id/questionTimeAllocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Usual Time Allocation"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp" />
+
+    <Spinner
+        android:id="@+id/spinnerTimeAllocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D3D3D3" />
+
+    <TextView
+        android:id="@+id/questionServingQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Preferred Serving Quantities"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp" />
+
+    <Spinner
+        android:id="@+id/spinnerServingQuantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D3D3D3" />
+
+    <TextView
+        android:id="@+id/questionDietaryRestrictions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dietary Restrictions"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp" />
+
+    <Spinner
+        android:id="@+id/spinnerDietaryRestrictions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D3D3D3" />
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:text="Save Changes" />
 </LinearLayout>

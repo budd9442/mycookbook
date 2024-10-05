@@ -5,6 +5,12 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Recipe Title" />
+
     <EditText
         android:id="@+id/editRecipeTitle"
         android:layout_width="match_parent"
@@ -13,6 +19,12 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ingredients" />
+
     <EditText
         android:id="@+id/editRecipeIngredients"
         android:layout_width="match_parent"
@@ -20,12 +32,31 @@
         android:hint="Ingredients"
         android:layout_marginTop="8dp" />
 
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Steps" />
+
     <EditText
         android:id="@+id/editRecipeSteps"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="161dp"
+        android:layout_marginTop="8dp"
+        android:gravity="top|start"
         android:hint="Steps"
-        android:layout_marginTop="8dp" />
+        android:singleLine="false" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TIme to cook" />
+
+    <Spinner
+        android:id="@+id/spinnerPreparationTime"
+        android:layout_width="384dp"
+        android:layout_height="36dp" />
 
     <Button
         android:id="@+id/saveButton"
