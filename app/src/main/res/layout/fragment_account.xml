@@ -36,7 +36,8 @@
     <Spinner
         android:id="@+id/spinnerCookingSkill"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
+        android:padding="12dp"
         android:background="#D3D3D3" />
 
     <TextView
@@ -52,7 +53,8 @@
     <Spinner
         android:id="@+id/spinnerTimeAllocation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
+        android:padding="12dp"
         android:background="#D3D3D3" />
 
     <TextView
@@ -68,7 +70,8 @@
     <Spinner
         android:id="@+id/spinnerServingQuantity"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
+        android:padding="12dp"
         android:background="#D3D3D3" />
 
     <TextView
@@ -84,7 +87,8 @@
     <Spinner
         android:id="@+id/spinnerDietaryRestrictions"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
+        android:padding="12dp"
         android:background="#D3D3D3" />
 
     <Button

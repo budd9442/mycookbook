@@ -14,10 +14,11 @@
     <EditText
         android:id="@+id/editRecipeTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:hint="Recipe Title"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:padding="12dp" />
 
     <TextView
         android:id="@+id/textView6"
@@ -28,9 +29,10 @@
     <EditText
         android:id="@+id/editRecipeIngredients"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:hint="Ingredients"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        android:padding="12dp" />
 
     <TextView
         android:id="@+id/textView7"
@@ -45,30 +47,36 @@
         android:layout_marginTop="8dp"
         android:gravity="top|start"
         android:hint="Steps"
-        android:singleLine="false" />
+        android:singleLine="false"
+        android:padding="12dp" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TIme to cook" />
+        android:text="Time to cook" />
 
     <Spinner
         android:id="@+id/spinnerPreparationTime"
-        android:layout_width="384dp"
-        android:layout_height="36dp" />
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:padding="12dp"
+        android:layout_marginTop="8dp" />
 
     <Button
         android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save Changes"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:padding="12dp" />
 
     <Button
         android:id="@+id/discardButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Discard Changes"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        android:padding="12dp" />
+
 </LinearLayout>

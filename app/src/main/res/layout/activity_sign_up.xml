@@ -6,7 +6,6 @@
     android:gravity="center"
     android:padding="16dp">
 
-
     <ImageView
         android:id="@+id/logoImageView"
         android:layout_width="170dp"
@@ -17,43 +16,42 @@
     <EditText
         android:id="@+id/nameEditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_corners"
         android:hint="Name"
         android:includeFontPadding="false"
-        android:padding="10dp"
-        android:paddingLeft="8dp" />
+        android:padding="16dp" />
 
     <EditText
         android:id="@+id/emailEditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_corners"
         android:hint="E-mail"
         android:includeFontPadding="false"
-        android:padding="10dp" />
+        android:padding="16dp" /> <!-- Increased padding -->
 
     <EditText
         android:id="@+id/passwordEditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_corners"
         android:hint="Password"
         android:inputType="textPassword"
-        android:padding="10dp" />
+        android:padding="16dp" />
 
     <EditText
         android:id="@+id/confirmPasswordEditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_corners"
         android:hint="Confirm Password"
         android:inputType="textPassword"
-        android:padding="10dp" />
+        android:padding="16dp" />
 
     <CheckBox
         android:id="@+id/termsCheckBox"
@@ -69,7 +67,8 @@
         android:text="Sign Up"
         android:backgroundTint="@color/teal_700"
         android:textColor="@android:color/white"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:padding="16dp" />
 
     <ProgressBar
         android:id="@+id/progressBar"

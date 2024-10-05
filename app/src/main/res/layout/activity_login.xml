@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:textAlignment="textStart">
+    android:textAlignment="textStart"
+    tools:ignore="ExtraText">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -17,23 +19,22 @@
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_marginTop="70dp"
         android:background="@drawable/rounded_corners"
         android:hint="Email"
-        android:padding="10dp"
+        android:padding="16dp"
         android:text="test@test.com" />
 
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/rounded_corners"
         android:hint="Password"
         android:inputType="textPassword"
-        android:padding="10dp"
-        android:text="12121212" />
+        android:padding="16dp" /> <!-- Removed contentDescription -->
 
     <!-- Social login icons -->
 
@@ -64,24 +65,25 @@
 
     <TextView
         android:id="@+id/textViewForgotPassword"
-        android:layout_width="381dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
         android:layout_marginTop="160dp"
         android:clickable="true"
         android:text="Forgot Password?"
         android:textAlignment="center"
-        android:textColor="@android:color/holo_blue_light" />
+        android:textColor="@android:color/holo_blue_light"
+        android:padding="16dp" />
 
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/rounded_corners"
         android:gravity="bottom"
-        android:padding="10dp"
+        android:padding="20dp"
         android:text="Login"
-        android:textAlignment="center" />
-
+        android:textAlignment="center"
+        tools:ignore="RtlCompat" />
 
 </LinearLayout>

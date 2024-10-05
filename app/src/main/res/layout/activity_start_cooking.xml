@@ -7,18 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".StartCooking">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="1213dp"
-        android:layout_height="1578dp"
-        android:backgroundTint="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.452"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.607"
-        app:srcCompat="@drawable/background" />
+
 
     <ImageView
         android:id="@+id/imageView3"
@@ -34,43 +23,44 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="230dp"
-        android:layout_height="92dp"
-        android:backgroundTint="#C77A94"
+        android:layout_width="134dp"
+        android:layout_height="62dp"
+        android:backgroundTint="@color/white"
         android:fontFamily="sans-serif-black"
-        android:text="Start Cooking"
+        android:text="Sign Up"
+        android:textColor="#FF018786"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.942"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.671" />
+        app:layout_constraintVertical_bias="0.778" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="273dp"
         android:layout_height="50dp"
-        android:fontFamily="casual"
-        android:text="Already have an account?"
-        android:textSize="20sp"
+        android:fontFamily="sans-serif-black"
+        android:text="Not Registered Yet ?"
+        android:textSize="24dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.652"
+        app:layout_constraintHorizontal_bias="0.115"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.797" />
+        app:layout_constraintVertical_bias="0.782" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#F0EAEC"
-        android:fontFamily="casual"
+        android:layout_width="168dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#FF018786"
+        android:fontFamily="sans-serif-black"
         android:text="Log in"
-        android:textColor="#DC0F0F"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -78,5 +68,5 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.886" />
+        app:layout_constraintVertical_bias="0.552" />
 </androidx.constraintlayout.widget.ConstraintLayout>
