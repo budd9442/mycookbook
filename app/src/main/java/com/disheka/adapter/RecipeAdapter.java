@@ -1,6 +1,7 @@
 package com.disheka.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.disheka.R;
 import com.disheka.model.Recipe;
+import com.disheka.ui.RecipeDetailsActivity; // Import your RecipeDetailsActivity
 
 import java.util.List;
 
@@ -48,6 +50,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         } else if (holder instanceof RegularRecipeViewHolder) {
             ((RegularRecipeViewHolder) holder).bind(recipe);
         }
+
+        // Set onClickListener for the item view
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, RecipeDetailsActivity.class);
+            intent.putExtra("recipe", recipe); // Pass the recipe object
+            context.startActivity(intent);
+        });
     }
 
     @Override

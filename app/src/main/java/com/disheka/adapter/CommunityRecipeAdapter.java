@@ -57,17 +57,20 @@ public class CommunityRecipeAdapter extends RecyclerView.Adapter<CommunityRecipe
         ImageView recipeImage;
         TextView recipeTitle;
         TextView recipeAuthor;
+        TextView recipeTime;
 
         public CommunityRecipeViewHolder(@NonNull View itemView) {
             super(itemView);
             recipeImage = itemView.findViewById(R.id.recipe_image);
             recipeTitle = itemView.findViewById(R.id.recipe_title);
             recipeAuthor = itemView.findViewById(R.id.recipe_author);
+            recipeTime = itemView.findViewById(R.id.recipe_time);
         }
 
         public void bind(Recipe recipe) {
             recipeTitle.setText(recipe.getName());
             recipeAuthor.setText("Recipe by " + recipe.getAuthor());
+            recipeTime.setText(recipe.getTime());
 
             // Load image using Picasso
             Picasso.get().load(recipe.getImageUrl())

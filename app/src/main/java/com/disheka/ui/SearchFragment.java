@@ -137,6 +137,6 @@ public class SearchFragment extends Fragment {
     }
 
     private void openFilterOptions() {
-        Snackbar.make(getView(), "Filter options clicked", Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(getView(), "Not implemented Yet :)", Snackbar.LENGTH_SHORT).show();
     }
 }
