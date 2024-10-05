@@ -32,7 +32,7 @@ public class AddRecipeActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private static final int PICK_IMAGE_REQUEST = 1;
 
-    private EditText editTextRecipeName, editTextIngredients, editTextSteps;
+    private EditText editTextRecipeName, editTextIngredients, editTextSteps,editTextUrl;
     private ImageView imageViewRecipe;
     private Uri imageUri;
     private Button buttonUploadImage, buttonSubmit;
@@ -57,7 +57,7 @@ public class AddRecipeActivity extends AppCompatActivity {
         buttonUploadImage = findViewById(R.id.buttonUploadImage);
         buttonSubmit = findViewById(R.id.buttonSubmit);
         spinnerPreparationTime = findViewById(R.id.spinnerPreparationTime);
-
+        editTextUrl = findViewById(R.id.editTextUrl);
         // Set up Spinner for Preparation Time
         setupPreparationTimeSpinner();
 
@@ -93,6 +93,7 @@ public class AddRecipeActivity extends AppCompatActivity {
         String recipeName = editTextRecipeName.getText().toString().trim();
         String ingredients = editTextIngredients.getText().toString().trim();
         String steps = editTextSteps.getText().toString().trim();
+        String videoUrl = editTextUrl.getText().toString().trim();
         String time = spinnerPreparationTime.getSelectedItem().toString().trim();
         if (recipeName.isEmpty() || ingredients.isEmpty() || steps.isEmpty() || imageUri == null) {
             Toast.makeText(this, "Please fill all fields and upload an image.", Toast.LENGTH_SHORT).show();
@@ -100,9 +101,9 @@ public class AddRecipeActivity extends AppCompatActivity {
         }
 
         // Upload image and recipe details to Firebase
-        uploadRecipe(recipeName, ingredients, steps, imageUri,time);
+        uploadRecipe(recipeName, ingredients, steps, imageUri,time,videoUrl);
     }
-    private void uploadRecipe(String recipeName, String ingredients, String steps, Uri imageUri, String time) {
+    private void uploadRecipe(String recipeName, String ingredients, String steps, Uri imageUri, String time, String videoUrl) {
         // Get the Firebase Storage reference
         StorageReference storageReference = FirebaseStorage.getInstance().getReference("recipes");
         String imageName = System.currentTimeMillis() + ".jpg";
@@ -122,6 +123,7 @@ public class AddRecipeActivity extends AppCompatActivity {
                     fileReference.getDownloadUrl().addOnSuccessListener(uri -> {
                         // Create a recipe object to store in Firestore
                         Recipe recipe = new Recipe(recipeName, ingredients, steps, uri.toString(), time, user.getUid(), user.getDisplayName());
+                        recipe.setVideoUrl(videoUrl);
 
                         // Save the recipe to Firestore
                         db.collection("recipes") // Change "recipes" to your desired collection name

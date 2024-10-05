@@ -32,6 +32,13 @@ public class MyRecipesFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadMyRecipes(); // Refresh data when the fragment is resumed
+    }
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,

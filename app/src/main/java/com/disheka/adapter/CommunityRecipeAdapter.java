@@ -1,6 +1,7 @@
 package com.disheka.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,17 +11,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.disheka.R;
 import com.disheka.model.Recipe;
-import com.squareup.picasso.Picasso; // Make sure Picasso is added to your project
+import com.disheka.ui.RecipeDetailsActivity; // Import the RecipeDetailsActivity
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class CommunityRecipeAdapter extends RecyclerView.Adapter<CommunityRecipeAdapter.CommunityRecipeViewHolder> {
 
     private final List<Recipe> recipeList;
+    private final Context context; // Added context
 
     public CommunityRecipeAdapter(List<Recipe> recipeList, Context context) {
         this.recipeList = recipeList;
-
+        this.context = context; // Initialize context
     }
 
     @NonNull
@@ -36,6 +39,13 @@ public class CommunityRecipeAdapter extends RecyclerView.Adapter<CommunityRecipe
     public void onBindViewHolder(@NonNull CommunityRecipeViewHolder holder, int position) {
         Recipe recipe = recipeList.get(position);
         holder.bind(recipe);
+
+        // Set an OnClickListener to open RecipeDetailsActivity when an item is clicked
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, RecipeDetailsActivity.class);
+            intent.putExtra("recipe", recipe); // Pass the recipe object
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -57,10 +67,10 @@ public class CommunityRecipeAdapter extends RecyclerView.Adapter<CommunityRecipe
 
         public void bind(Recipe recipe) {
             recipeTitle.setText(recipe.getName());
-            recipeAuthor.setText("Recipe by "+recipe.getAuthor()); // Adjusted to use ingredients
+            recipeAuthor.setText("Recipe by " + recipe.getAuthor());
 
             // Load image using Picasso
-            Picasso.get().load(recipe.getImageUrl()) // Ensure your Recipe model has an image URL
+            Picasso.get().load(recipe.getImageUrl())
                     .into(recipeImage);
         }
     }

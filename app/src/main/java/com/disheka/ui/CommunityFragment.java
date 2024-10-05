@@ -33,6 +33,13 @@ public class CommunityFragment extends Fragment {
     private FloatingActionButton fabAddRecipe;
 
     @Override
+    public void onResume() {
+        super.onResume();
+        fetchRecipesFromFirestore(); // Refresh data when the fragment is resumed
+    }
+
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_community, container, false);
 
@@ -69,16 +76,17 @@ public class CommunityFragment extends Fragment {
 
         return view;
     }
-
     private void fetchRecipesFromFirestore() {
         db.collection("recipes") // Replace with your collection name
+                .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING) // Order by timestamp
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
+                        recipeList.clear(); // Clear the old data
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Recipe recipe = document.toObject(Recipe.class);
                             recipeList.add(recipe); // Add to the main list
-                            Log.d("AAAAAAAAAAA", "fetchRecipesFromFirestore: "+recipe);
+                            Log.d("CommunityFragment", "fetchRecipesFromFirestore: " + recipe);
                         }
                         recipeAdapter.notifyDataSetChanged(); // Notify adapter to update the UI
                     } else {
@@ -86,4 +94,5 @@ public class CommunityFragment extends Fragment {
                     }
                 });
     }
+
 }

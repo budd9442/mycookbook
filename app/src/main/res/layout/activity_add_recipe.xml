@@ -27,7 +27,7 @@
     <EditText
         android:id="@+id/editTextSteps"
         android:layout_width="match_parent"
-        android:layout_height="302dp"
+        android:layout_height="180dp"
         android:gravity="top|start"
         android:hint="Steps"
         android:inputType="text|textMultiLine"
@@ -35,6 +35,12 @@
         android:singleLine="false"
         android:textAlignment="viewStart"
         android:verticalScrollbarPosition="right" />
+
+    <EditText
+        android:id="@+id/editTextUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Youtube link" />
 
     <TextView
         android:id="@+id/textView2"

@@ -15,6 +15,7 @@ public class Recipe implements Serializable {
     private String authorUid;
     private Date timestamp;
     private String documentId;
+    private  String videoUrl;
 
     // Empty constructor required for Firestore
     public Recipe() {}
@@ -28,10 +29,20 @@ public class Recipe implements Serializable {
         this.authorUid = uid;
         this.author = author;
         this.timestamp = new Date(); // Automatically set current timestamp
+        this.videoUrl = "https://www.youtube.com/watch?v=PQuq4umpb3Q";
 
     }
 
     // Getters and Setters
+
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
 
     public String getName() {
         return name;
