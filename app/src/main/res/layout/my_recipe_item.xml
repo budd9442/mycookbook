@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:orientation="horizontal">
+
+        <!-- Delete Icon -->
+        <!-- Add space between icons and recipe image -->
+
+        <!-- Edit Icon -->
+        <!-- Add space between icons and recipe image -->
+
+        <ImageView
+            android:id="@+id/recipeImage"
+            android:layout_width="78dp"
+            android:layout_height="78dp"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@string/recipe_image_desc"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/recipeTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/recipeDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="14sp" />
+    </LinearLayout>
+        <ImageView
+            android:id="@+id/editIcon"
+            android:layout_width="40dp"
+            android:layout_height="41dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="edit_recipe"
+            android:src="@drawable/ic_edit" />
+
+        <ImageView
+            android:id="@+id/deleteIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="delete_recipe"
+            android:src="@drawable/ic_delete" />
+    </LinearLayout>
+    </LinearLayout>

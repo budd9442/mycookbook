@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Input for Recipe Name -->
+    <EditText
+        android:id="@+id/editTextRecipeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Recipe Name" />
+
+    <!-- Input for Ingredients -->
+    <EditText
+        android:id="@+id/editTextIngredients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingredients (comma separated)" />
+
+    <!-- Input for Steps -->
+
+    <!-- Dropdown menu for time to prepare -->
+
+    <!-- Button to upload Image -->
+    <EditText
+        android:id="@+id/editTextSteps"
+        android:layout_width="match_parent"
+        android:layout_height="302dp"
+        android:gravity="top|start"
+        android:hint="Steps"
+        android:inputType="text|textMultiLine"
+        android:paddingLeft="5dp"
+        android:singleLine="false"
+        android:textAlignment="viewStart"
+        android:verticalScrollbarPosition="right" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="  Time to Cook" />
+
+    <Spinner
+        android:id="@+id/spinnerPreparationTime"
+        android:layout_width="384dp"
+        android:layout_height="36dp" />
+
+    <Button
+        android:id="@+id/buttonUploadImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload Image" />
+
+    <!-- ImageView to show selected image -->
+    <ImageView
+        android:id="@+id/imageViewRecipe"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:visibility="gone" />
+
+    <!-- Button to submit the recipe -->
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit Recipe" />
+
+</LinearLayout>

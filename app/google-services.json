@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "154976543082",
+    "project_id": "disheka-3d323",
+    "storage_bucket": "disheka-3d323.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154976543082:android:e3d425c0a0b00e11f7c513",
+        "android_client_info": {
+          "package_name": "com.disheka"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDb2abt_319QVejb7o8TzjCeSBqgymhdpM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
