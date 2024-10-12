@@ -1,22 +1,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    app:layout_scrollFlags="enterAlwaysCollapsed">
 
     <!-- Banner Image -->
     <ImageView
         android:id="@+id/bannerImage"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_width="390dp"
+        android:layout_height="154dp"
         android:scaleType="centerCrop"
         android:src="@drawable/banner_placeholder" />
 
     <!-- Profile Picture -->
+
     <ImageView
         android:id="@+id/profilePicture"
-        android:layout_width="166dp"
-        android:layout_height="157dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_gravity="center"
         android:layout_marginTop="-50dp"
         android:layout_marginBottom="16dp"
@@ -28,68 +31,68 @@
         android:id="@+id/questionCookingSkill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
         android:text="Cooking Skill Level"
-        android:textStyle="bold"
         android:textSize="18sp"
-        android:paddingBottom="8dp" />
+        android:textStyle="bold" />
 
     <Spinner
         android:id="@+id/spinnerCookingSkill"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:padding="12dp"
-        android:background="#D3D3D3" />
+        android:background="#D3D3D3"
+        android:padding="12dp" />
 
     <TextView
         android:id="@+id/questionTimeAllocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Usual Time Allocation"
-        android:textStyle="bold"
-        android:textSize="18sp"
         android:paddingTop="16dp"
-        android:paddingBottom="8dp" />
+        android:paddingBottom="8dp"
+        android:text="Usual Time Allocation"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <Spinner
         android:id="@+id/spinnerTimeAllocation"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:padding="12dp"
-        android:background="#D3D3D3" />
+        android:background="#D3D3D3"
+        android:padding="12dp" />
 
     <TextView
         android:id="@+id/questionServingQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Preferred Serving Quantities"
-        android:textStyle="bold"
-        android:textSize="18sp"
         android:paddingTop="16dp"
-        android:paddingBottom="8dp" />
+        android:paddingBottom="8dp"
+        android:text="Preferred Serving Quantities"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <Spinner
         android:id="@+id/spinnerServingQuantity"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:padding="12dp"
-        android:background="#D3D3D3" />
+        android:background="#D3D3D3"
+        android:padding="12dp" />
 
     <TextView
         android:id="@+id/questionDietaryRestrictions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dietary Restrictions"
-        android:textStyle="bold"
-        android:textSize="18sp"
         android:paddingTop="16dp"
-        android:paddingBottom="8dp" />
+        android:paddingBottom="8dp"
+        android:text="Dietary Restrictions"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <Spinner
         android:id="@+id/spinnerDietaryRestrictions"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:padding="12dp"
-        android:background="#D3D3D3" />
+        android:background="#D3D3D3"
+        android:padding="12dp" />
 
     <Button
         android:id="@+id/buttonSave"

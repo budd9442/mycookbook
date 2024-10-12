@@ -57,12 +57,12 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <WebView
-            android:id="@+id/youtube_webview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            tools:ignore="WebViewLayout" />
+        <VideoView
+            android:id="@+id/video_view"
+            android:layout_width="1280px"
+            android:layout_height="720px"
+            android:layout_marginTop="16dp" />
+
     </LinearLayout>
 
 </ScrollView>

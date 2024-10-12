@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -19,7 +20,6 @@ import com.disheka.R;
 import com.disheka.model.Recipe;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
@@ -27,17 +27,17 @@ import com.google.firebase.storage.StorageReference;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.Date;
-
 public class AddRecipeActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private static final int PICK_IMAGE_REQUEST = 1;
+    private static final int PICK_VIDEO_REQUEST = 2; // Unique request code for video selection
 
-    private EditText editTextRecipeName, editTextIngredients, editTextSteps,editTextUrl;
+    private EditText editTextRecipeName, editTextIngredients, editTextSteps, editTextUrl;
     private ImageView imageViewRecipe;
-    private Uri imageUri;
-    private Button buttonUploadImage, buttonSubmit;
+    private Uri imageUri, videoUri;
+    private Button buttonUploadImage, buttonUploadVideo, buttonSubmit;
     private Spinner spinnerPreparationTime;
+    private ProgressBar uploadProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,11 +58,14 @@ public class AddRecipeActivity extends AppCompatActivity {
         buttonUploadImage = findViewById(R.id.buttonUploadImage);
         buttonSubmit = findViewById(R.id.buttonSubmit);
         spinnerPreparationTime = findViewById(R.id.spinnerPreparationTime);
-        editTextUrl = findViewById(R.id.editTextUrl);
+        buttonUploadVideo = findViewById(R.id.buttonUploadVideo); // New button for video upload
+        uploadProgressBar = findViewById(R.id.uploadProgressBar); // Progress bar for video upload
+
         // Set up Spinner for Preparation Time
         setupPreparationTimeSpinner();
 
         buttonUploadImage.setOnClickListener(v -> openFileChooser());
+        buttonUploadVideo.setOnClickListener(v -> openVideoChooser()); // Video upload button listener
         buttonSubmit.setOnClickListener(v -> submitRecipe());
     }
 
@@ -80,6 +83,13 @@ public class AddRecipeActivity extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(intent, "Select an image"), PICK_IMAGE_REQUEST);
     }
 
+    private void openVideoChooser() {
+        Intent intent = new Intent();
+        intent.setType("video/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select a video"), PICK_VIDEO_REQUEST);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -88,27 +98,33 @@ public class AddRecipeActivity extends AppCompatActivity {
             imageViewRecipe.setImageURI(imageUri);
             imageViewRecipe.setVisibility(View.VISIBLE);
         }
+        if (requestCode == PICK_VIDEO_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            videoUri = data.getData(); // Get the video URI
+            Toast.makeText(this, "Video selected!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void submitRecipe() {
         String recipeName = editTextRecipeName.getText().toString().trim();
         String ingredients = editTextIngredients.getText().toString().trim();
         String steps = editTextSteps.getText().toString().trim();
-        String videoUrl = editTextUrl.getText().toString().trim();
         String time = spinnerPreparationTime.getSelectedItem().toString().trim();
-        if (recipeName.isEmpty() || ingredients.isEmpty() || steps.isEmpty() || imageUri == null) {
-            Toast.makeText(this, "Please fill all fields and upload an image.", Toast.LENGTH_SHORT).show();
+        if (recipeName.isEmpty() || ingredients.isEmpty() || steps.isEmpty() || imageUri == null || videoUri == null) {
+            Toast.makeText(this, "Please fill all fields, upload an image, and select a video.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Upload image and recipe details to Firebase
-        uploadRecipe(recipeName, ingredients, steps, imageUri,time,videoUrl);
+        // Upload video and recipe details to Firebase
+        uploadRecipeWithVideo(recipeName, ingredients, steps, imageUri, videoUri, time);
     }
-    private void uploadRecipe(String recipeName, String ingredients, String steps, Uri imageUri, String time, String videoUrl) {
+
+    private void uploadRecipeWithVideo(String recipeName, String ingredients, String steps, Uri imageUri, Uri videoUri, String time) {
         // Get the Firebase Storage reference
         StorageReference storageReference = FirebaseStorage.getInstance().getReference("recipes");
         String imageName = System.currentTimeMillis() + ".jpg";
-        StorageReference fileReference = storageReference.child(imageName);
+        String videoName = System.currentTimeMillis() + ".mp4"; // Generate video name
+        StorageReference imageFileReference = storageReference.child(imageName);
+        StorageReference videoFileReference = storageReference.child(videoName); // Video file reference
 
         // Get the current user
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -117,40 +133,52 @@ public class AddRecipeActivity extends AppCompatActivity {
             return; // Exit if the user is not logged in
         }
 
-        // Upload the image to Firebase Storage
-        fileReference.putFile(imageUri)
+        // Show the progress bar for video upload
+        uploadProgressBar.setVisibility(View.VISIBLE);
+
+        // Upload the image first
+        imageFileReference.putFile(imageUri)
                 .addOnSuccessListener(taskSnapshot -> {
-                    // Get the download URL after a successful upload
-                    fileReference.getDownloadUrl().addOnSuccessListener(uri -> {
-                        // Create a recipe object to store in Firestore
-                        Recipe recipe = new Recipe(recipeName, ingredients, steps, uri.toString(), time, user.getUid(), user.getDisplayName());
-                        recipe.setVideoUrl(videoUrl);
+                    imageFileReference.getDownloadUrl().addOnSuccessListener(imageUriResult -> {
 
-                        // Save the recipe to Firestore
-                        db.collection("recipes") // Change "recipes" to your desired collection name
-                                .add(recipe)
-                                .addOnSuccessListener(documentReference -> {
-                                    // Set the document ID in the recipe object
-                                    recipe.setDocumentId(documentReference.getId());
+                        // Upload the video after the image is successfully uploaded
+                        videoFileReference.putFile(videoUri)
+                                .addOnSuccessListener(videoTaskSnapshot -> {
+                                    videoFileReference.getDownloadUrl().addOnSuccessListener(videoUriResult -> {
 
-                                    // Now update the recipe in Firestore with the document ID
-                                    db.collection("recipes").document(documentReference.getId()).set(recipe)
-                                            .addOnSuccessListener(aVoid -> {
-                                                Toast.makeText(AddRecipeActivity.this, "Recipe uploaded successfully", Toast.LENGTH_SHORT).show();
-                                                finish(); // Close the activity
-                                            })
-                                            .addOnFailureListener(e -> {
-                                                Toast.makeText(AddRecipeActivity.this, "Error updating recipe with document ID: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                            });
-                                })
-                                .addOnFailureListener(e -> {
-                                    Toast.makeText(AddRecipeActivity.this, "Error saving recipe: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        // Create a recipe object to store in Firestore
+                                        Recipe recipe = new Recipe(recipeName, ingredients, steps, imageUriResult.toString(), time, user.getUid(), user.getDisplayName());
+                                        recipe.setVideoUrl(videoUriResult.toString()); // Set video URL
+
+                                        // Save the recipe to Firestore
+                                        db.collection("recipes")
+                                                .add(recipe)
+                                                .addOnSuccessListener(documentReference -> {
+                                                    uploadProgressBar.setVisibility(View.GONE); // Hide progress bar after success
+                                                    Toast.makeText(AddRecipeActivity.this, "Recipe uploaded successfully", Toast.LENGTH_SHORT).show();
+                                                    finish(); // Close the activity
+                                                })
+                                                .addOnFailureListener(e -> {
+                                                    uploadProgressBar.setVisibility(View.GONE); // Hide progress bar after failure
+                                                    Toast.makeText(AddRecipeActivity.this, "Error saving recipe: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                });
+
+                                    }).addOnFailureListener(e -> {
+                                        uploadProgressBar.setVisibility(View.GONE);
+                                        Toast.makeText(AddRecipeActivity.this, "Failed to get video URL: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    });
+                                }).addOnFailureListener(e -> {
+                                    uploadProgressBar.setVisibility(View.GONE);
+                                    Toast.makeText(AddRecipeActivity.this, "Video upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                 });
                     }).addOnFailureListener(e -> {
-                        Toast.makeText(AddRecipeActivity.this, "Failed to get download URL: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        uploadProgressBar.setVisibility(View.GONE);
+                        Toast.makeText(AddRecipeActivity.this, "Failed to get image URL: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     });
-                })
-                .addOnFailureListener(e -> Toast.makeText(AddRecipeActivity.this, "Upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                }).addOnFailureListener(e -> {
+                    uploadProgressBar.setVisibility(View.GONE);
+                    Toast.makeText(AddRecipeActivity.this, "Image upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
 
     public String getNameByAuthorUid(String uid) {

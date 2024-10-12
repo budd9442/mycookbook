@@ -24,7 +24,7 @@
         android:background="@drawable/rounded_corners"
         android:hint="Email"
         android:padding="16dp"
-        android:text="test@test.com" />
+         />
 
     <EditText
         android:id="@+id/editTextPassword"

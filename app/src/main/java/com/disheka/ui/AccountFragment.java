@@ -15,9 +15,11 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
 import com.disheka.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -104,17 +106,17 @@ public class AccountFragment extends Fragment {
     private void loadUserData() {
         String currentUserUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        // Query to find the user document based on the uid field
-        db.collection("users")
-                .whereEqualTo("uid", currentUserUid) // Query by uid field
+        // Directly reference the document using the uid as the document ID
+        db.collection("users").document(currentUserUid)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        if (task.getResult() != null && !task.getResult().isEmpty()) {
-                            DocumentSnapshot document = task.getResult().getDocuments().get(0); // Get the first matching document
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
 
                             // Set user name
                             // userName.setText(document.getString("name"));
+
                             // Set profile picture (if applicable)
                             // Example: profilePicture.setImageResource(R.drawable.your_profile_image);
 
@@ -148,6 +150,7 @@ public class AccountFragment extends Fragment {
                 })
                 .addOnFailureListener(e -> Toast.makeText(getActivity(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
+
 
     private int getPositionInArray(String[] array, String value) {
         for (int i = 0; i < array.length; i++) {

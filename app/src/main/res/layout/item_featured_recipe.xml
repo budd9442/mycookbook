@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="199dp"
-        android:layout_height="match_parent"
+        android:layout_height="309dp"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -32,7 +32,7 @@
 
                 <TextView
                     android:id="@+id/featured_recipe_name"
-                    android:layout_width="82dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:textColor="@android:color/black"

@@ -1,85 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Input for Recipe Name -->
-    <EditText
-        android:id="@+id/editTextRecipeName"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:hint="Recipe Name"
-        android:padding="12dp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <!-- Input for Ingredients -->
-    <EditText
-        android:id="@+id/editTextIngredients"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:hint="Ingredients (comma separated)"
-        android:padding="12dp" />
+        <!-- Input for Recipe Name -->
+        <EditText
+            android:id="@+id/editTextRecipeName"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Recipe Name"
+            android:padding="12dp" />
 
-    <!-- Input for Steps -->
-    <EditText
-        android:id="@+id/editTextSteps"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:gravity="top|start"
-        android:hint="Steps"
-        android:inputType="text|textMultiLine"
-        android:padding="12dp"
-        android:singleLine="false"
-        android:textAlignment="viewStart" />
+        <!-- Input for Ingredients -->
+        <EditText
+            android:id="@+id/editTextIngredients"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Ingredients (comma separated)"
+            android:padding="12dp" />
 
-    <!-- Input for YouTube link -->
-    <EditText
-        android:id="@+id/editTextUrl"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:hint="YouTube link"
-        android:padding="12dp" />
+        <!-- Input for Steps -->
+        <EditText
+            android:id="@+id/editTextSteps"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:gravity="top|start"
+            android:hint="Steps"
+            android:inputType="text|textMultiLine"
+            android:padding="12dp"
+            android:singleLine="false"
+            android:textAlignment="viewStart" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Time to Cook"
-        android:paddingTop="8dp" />
+        <!-- Input for YouTube link -->
 
-    <!-- Dropdown menu for time to prepare -->
-    <Spinner
-        android:id="@+id/spinnerPreparationTime"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:padding="12dp" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Time to Cook"
+            android:paddingTop="8dp" />
 
-    <!-- Button to upload Image -->
-    <Button
-        android:id="@+id/buttonUploadImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Upload Image"
-        android:padding="12dp"
-        android:layout_marginTop="16dp" />
+        <!-- Dropdown menu for time to prepare -->
 
-    <!-- ImageView to show selected image -->
-    <ImageView
-        android:id="@+id/imageViewRecipe"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:visibility="gone"
-        android:layout_marginTop="16dp" />
+        <!-- Button to upload Image -->
+        <Spinner
+            android:id="@+id/spinnerPreparationTime"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:padding="12dp" />
 
-    <!-- Button to submit the recipe -->
-    <Button
-        android:id="@+id/buttonSubmit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Submit Recipe"
-        android:padding="12dp"
-        android:layout_marginTop="16dp" />
+        <Button
+            android:id="@+id/buttonUploadImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload Image"
+            android:padding="12dp"
+            android:layout_marginTop="16dp" />
 
-</LinearLayout>
+        <!-- ImageView to show selected image -->
+        <ImageView
+            android:id="@+id/imageViewRecipe"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            android:layout_marginTop="16dp" />
+
+        <!-- Button to submit the recipe -->
+
+        <Button
+            android:id="@+id/buttonUploadVideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="12dp"
+            android:text="Upload Video" />
+
+        <ProgressBar
+            android:id="@+id/uploadProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/buttonSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="12dp"
+            android:text="Submit Recipe" />
+
+
+    </LinearLayout>
+
+</ScrollView>
